@@ -113,6 +113,16 @@ def filter_by_location(spots, location):
     return [i for i in spots if i.get('latitude') > location[0] and i.get('latitude') < location[1] \
             and i.get('longitude') > location[2] and i.get('longitude') < location[3]]
 
+def sort_by_keyword(spots, keyword):
+    """ Returns the new list of parking_spot, sorted by keyword
+    Args:
+        spots (parking_spot[]): list consisted of parking_spot instances.
+        keyword (str): designates sort-by
+    Returns:
+        parking_spot[]: list of sorted parking_spot.
+    """
+    return sorted(spots, key=lambda i: i.get(keyword))
+
 # 각 단계별로 테스트 (테스트할때 주석해제 후 사용)
 if __name__ == '__main__':
     print("Testing the module...")
@@ -127,5 +137,5 @@ if __name__ == '__main__':
     print_spots(spots)
     
     # version#4
-    # spots = sort_by_keyword(spots, 'name')
-    # print_spots(spots)
+    spots = sort_by_keyword(spots, 'name')
+    print_spots(spots)
