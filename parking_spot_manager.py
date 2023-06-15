@@ -57,6 +57,62 @@ def print_spots(spots):
     for i in spots:
         print(i)
 
+def filter_by_name(spots, name):
+    """ Filters the list of parking_spot, by checking if the given name is included in the spot's name
+        and returns new filtered list.
+    Args:
+        spots (parking_spot[]): list consisted of parking_spot instances.
+        name (str): string to be used to filter
+    Returns:
+        parking_spot[]: list of filtered parking_spot.
+    """
+    return [i for i in spots if name in i.get('name')]
+
+def filter_by_city(spots, city):
+    """ Filters the list of parking_spot, by checking if the given city string is
+        included in the spot's "city" field, and returns new filtered list.
+    Args:
+        spots (parking_spot[]): list consisted of parking_spot instances.
+        city (str): string to be used to filter
+    Returns:
+        parking_spot[]: list of filtered parking_spot.
+    """
+    return [i for i in spots if city in i.get('city')]
+
+def filter_by_district(spots, district):
+    """ Filters the list of parking_spot, by checking if the given district string is
+        included in the spot's "district" field, and returns new filtered list.
+    Args:
+        spots (parking_spot[]): list consisted of parking_spot instances.
+        district (str): string to be used to filter
+    Returns:
+        parking_spot[]: list of filtered parking_spot.
+    """
+    return [i for i in spots if district in i.get('district')]
+
+def filter_by_ptype(spots, ptype):
+    """ Filters the list of parking_spot, by checking if the given ptype string is
+        included in the spot's "ptype" field, and returns new filtered list.
+    Args:
+        spots (parking_spot[]): list consisted of parking_spot instances.
+        ptype (str): string to be used to filter
+    Returns:
+        parking_spot[]: list of filtered parking_spot.
+    """
+    return [i for i in spots if ptype in i.get('ptype')]
+
+def filter_by_location(spots, location):
+    """ Filters the list of parking_spot, by checking if the parking_spot is located
+        within the given lat/lon range
+    Args:
+        spots (parking_spot[]): list consisted of parking_spot instances.
+        location (float[]): tuple consisted of min_lat, max_lat, min_lon, max_lon
+    Returns:
+        parking_spot[]: list of filtered parking_spot.
+    """
+    return [i for i in spots if i.get('latitude') > location[0] and i.get('latitude') < location[1] \
+            and i.get('longitude') > location[2] and i.get('longitude') < location[3]]
+
 # 각 단계별로 테스트 (테스트할때 주석해제 후 사용)
 if __name__ == '__main__':
     print("Testing the module...")
@@ -67,8 +123,8 @@ if __name__ == '__main__':
     print_spots(spots)
 
     # version#3
-    # spots = filter_by_district(spots, '동작')
-    # print_spots(spots)
+    spots = filter_by_district(spots, '동작')
+    print_spots(spots)
     
     # version#4
     # spots = sort_by_keyword(spots, 'name')
